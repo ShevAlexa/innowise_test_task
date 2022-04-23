@@ -1,0 +1,3 @@
+POSTGRES_PASSWORD=useruser
+POSTGRES_USER=Alexan
+POSTGRES_DB=postgresql_db
