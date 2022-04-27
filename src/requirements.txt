@@ -13,3 +13,4 @@ djangorestframework-simplejwt
 pytest
 pytest-django
 flake8
+python-dotenv==0.20.0

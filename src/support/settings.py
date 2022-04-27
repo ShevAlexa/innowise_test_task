@@ -9,9 +9,12 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 from datetime import timedelta
 from pathlib import Path
 from os import environ
+from dotenv import load_dotenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,8 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-73)hpw6++muo^!vid-956x+' \
-             '(_12cd(v8eq6uqv%&i5x9q60jzb'
+# SECRET_KEY = 'django-insecure-73)hpw6++muo^!vid-956x+' \
+#              '(_12cd(v8eq6uqv%&i5x9q60jzb'
+
+# dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+# load_dotenv(dotenv_path)
+
+SECRET_KEY = str(environ.get("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,24 +86,24 @@ WSGI_APPLICATION = 'support.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': environ.get("POSTGRES_DB"),
-        "PASSWORD": environ.get("POSTGRES_PASSWORD"),
-        'USER': environ.get("POSTGRES_USER"),
-        'PORT': 5432,
-        'HOST': 'db',
-    }
-}
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': "db.sqlite3",
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': environ.get("POSTGRES_DB"),
+#         "PASSWORD": environ.get("POSTGRES_PASSWORD"),
+#         'USER': environ.get("POSTGRES_USER"),
+#         'PORT': 5432,
+#         'HOST': 'db',
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': "db.sqlite3",
+    }
+}
 
 
 # Password validation
@@ -166,8 +174,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.SessionAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
 
