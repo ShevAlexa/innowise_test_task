@@ -86,24 +86,24 @@ WSGI_APPLICATION = 'support.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': environ.get("POSTGRES_DB"),
-#         "PASSWORD": environ.get("POSTGRES_PASSWORD"),
-#         'USER': environ.get("POSTGRES_USER"),
-#         'PORT': 5432,
-#         'HOST': 'db',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': "db.sqlite3",
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': environ.get("POSTGRES_DB"),
+        "PASSWORD": environ.get("POSTGRES_PASSWORD"),
+        'USER': environ.get("POSTGRES_USER"),
+        'PORT': 5432,
+        'HOST': 'db',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': "db.sqlite3",
+#     }
+# }
 
 
 # Password validation
@@ -174,8 +174,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
 
